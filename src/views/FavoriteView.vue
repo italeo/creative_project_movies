@@ -1,66 +1,20 @@
 <template>
-  <div class="home">
-    <div class="feature-card">
-      <router-link to="/movie/tt0409591">
-        <img src="https://m.media-amazon.com/images/M/MV5BZmQ5NGFiNWEtMmMyMC00MDdiLTg4YjktOGY5Yzc2MDUxMTE1XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg" alt="Naruto Poster" class="featured-img" />
-        <div class="detail">
-          <h3>Naruto</h3>
-          <p>Naruto Uzumaki, a mischievous adolescent ninja, struggles as he searches for recognition and dreams of becoming the Hokage, the village's leader and strongest ninja.</p>
-        </div>
-      </router-link>
-    </div>
-
-    <form @submit.prevent="SearchMovies()" class="search-box">
-      <input type="text" placeholder="What are you looking for?" v-model="search" />
-      <input type="submit" value="Search" />
-    </form>
-
-    <div class="movies-list">
-      <div class="movie" v-for="movie in movies" :key="movie.imdbID">
-        <router-link :to="'/movie/' + movie.imdbID" class="movie-link">
-          <div class="product-image">
-            <img :src="movie.Poster" alt="Movie Poster" />
-            <div class="type">{{ movie.Type }}</div>
-          </div>
-          <div class="detail">
-            <p class="year">{{ movie.Year }}</p>
-            <h3>{{ movie.Title }}</h3>
-          </div>
-        </router-link>
-      </div>
-    </div>
-  </div>
+<p>A list of most of my favorite movies</p>
+<ul>
+    <li>John Wick</li>
+    <li>Star Wars</li>
+    <li>Rango</li>
+    <li>Under A Blue Moon</li>
+    <li>A fly In The Champagne</li>
+    <li>Peanut Butter Falcon</li>
+    <li>Captain Phiplips</li>
+    <li>Greyhound</li>
+    <li>King Richard</li>
+    <li>The Last Dance</li>
+    <li>The Fighter</li>
+    <li>CODA</li>
+</ul>
 </template>
-
-<script>
-import { ref } from 'vue';
-import env from '@/env.js'
-
-export default {
-  setup () {
-    const search = ref("");
-    const movies = ref([]);
-
-    const SearchMovies = () => {
-      if (search.value != "") {
-        fetch(`http://www.omdbapi.com/?apikey=${env.apikey}&s=${search.value}`)
-          .then(response => response.json())
-          .then(data => {
-            movies.value = data.Search;
-            search.value = "";
-          });
-      }
-    }
-
-    return {
-      search,
-      movies,
-      SearchMovies
-    }
-  }
-}
-</script>
-
 <style lang="scss">
 .home {
   .feature-card {
@@ -69,7 +23,7 @@ export default {
     .featured-img {
       display: block;
       width: 100%;
-      height: 500px;
+      height: 300px;
       object-fit: cover;
 
       position: relative;
@@ -204,5 +158,13 @@ export default {
       }
     }
   }
+}
+p {
+    color: white;
+}
+ul {
+    color: lightblue;
+    padding-top: 20px;
+    padding-left: 20px;
 }
 </style>
